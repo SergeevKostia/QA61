@@ -86,16 +86,6 @@ public class DataHelper {
         return new Card(number, month, year, holder, cvv);
     }
 
-    public static Card cardNumberUppBound() {
-        Faker faker = new Faker(new Locale("en"));
-        String holder = faker.name().firstName() + " " + faker.name().lastName();
-        String month = getShiftedMonth();
-        String year = getShiftedYear();
-        String cvv = faker.number().digits(3);
-        String number = faker.number().digits(17);
-        return new Card(number, month, year, holder, cvv);
-    }
-
     public static Card cardLettersNumber() {
         Faker faker = new Faker(new Locale("en"));
         String holder = faker.name().firstName() + " " + faker.name().lastName();
@@ -229,7 +219,7 @@ public class DataHelper {
         return new Card(cardNumber, month, year, holder, cvv);
     }
 
-    public static Card UppedBoundYear() {
+    public static Card uppedBoundYear() {
         Faker faker = new Faker(new Locale("en"));
         String cardNumber = getApprovedCardNumber();
         String holder = faker.name().firstName() + " " + faker.name().lastName();
@@ -245,16 +235,6 @@ public class DataHelper {
         String holder = faker.name().firstName() + " " + faker.name().lastName();
         String month = getShiftedMonth();
         String year = faker.number().digits(1);
-        String cvv = faker.number().digits(3);
-        return new Card(cardNumber, month, year, holder, cvv);
-    }
-
-    public static Card getYearWrongUppedFormat() {
-        Faker faker = new Faker(new Locale("en"));
-        String cardNumber = getApprovedCardNumber();
-        String holder = faker.name().firstName() + " " + faker.name().lastName();
-        String month = getShiftedMonth();
-        String year = faker.number().digits(3);
         String cvv = faker.number().digits(3);
         return new Card(cardNumber, month, year, holder, cvv);
     }
@@ -337,7 +317,7 @@ public class DataHelper {
         return new Card(cardNumber, month, year, holder, cvv);
     }
 
-    public static Card getOneLettersInHolder() {
+    public static Card getOneHolder() {
         Faker faker = new Faker(new Locale("en"));
         String cardNumber = getApprovedCardNumber();
         String month = getShiftedMonth();
@@ -367,15 +347,6 @@ public class DataHelper {
         String cvv = faker.number().digits(2);
         return new Card(cardNumber, month, year, holder, cvv);
     }
-    public static Card getUppedBondCVV() {
-        Faker faker = new Faker(new Locale("en"));
-        String cardNumber = getApprovedCardNumber();
-        String holder = faker.name().firstName() + " " + faker.name().lastName();
-        String month = getShiftedMonth();
-        String year = getShiftedYear();
-        String cvv = faker.number().digits(4);
-        return new Card(cardNumber, month, year, holder, cvv);
-    }
     public static Card getLettersCVV() {
         Faker faker = new Faker(new Locale("en"));
         String cardNumber = getApprovedCardNumber();
@@ -398,6 +369,6 @@ public class DataHelper {
         String holder = faker.name().firstName() + " " + faker.name().lastName();
         String month = getShiftedMonth();
         String year = getShiftedYear();
-        return new Card(cardNumber, month, year, holder, "!@#");
+        return new Card(cardNumber, month, year, holder, "12))");
     }
 }

@@ -3,16 +3,15 @@ package ru.netology.data;
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import ru.netology.data.CreditRequestEntity;
-import ru.netology.data.PaymentEntity;
-
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.junit.jupiter.api.Assertions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SQLHelper {
-    private static final String URL = System.getProperty("db.url");
-    private static final String USERNAME = System.getProperty("datasource.username");
-    private static final String PASSWORD = System.getProperty("datasource.password");
+    private static String url = System.getProperty("db.url");
+    private static String user = System.getProperty("db.user");
+    private static String password = System.getProperty("db.password");
 
     @SneakyThrows
     public static PaymentEntity paymentEntity() {
@@ -23,17 +22,9 @@ public class SQLHelper {
     }
 
     @SneakyThrows
-    public static CreditRequestEntity creditRequestEntity() {
-        String sql = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
-        QueryRunner runner = new QueryRunner();
-        Connection conn = getConnection();
-        return runner.query(conn, sql, new BeanHandler<>(CreditRequestEntity.class));
-    }
-
-    @SneakyThrows
     private static Connection getConnection() {
         return DriverManager.getConnection(
-                URL, USERNAME, PASSWORD
+                url, user, password
         );
     }
 
@@ -47,5 +38,19 @@ public class SQLHelper {
         runner.execute(conn, sql);
         runner.execute(conn, sql1);
         runner.execute(conn, sql2);
+    }
+    @SneakyThrows
+    public static void assertDbEmpty() {
+        String sql = "Select count(*) from credit_request_entity;";
+        String sql1 = "Select count(*) from order_entity;";
+        String sql2 = "Select count(*) from payment_entity;";
+        QueryRunner runner = new QueryRunner();
+        Connection conn = getConnection();
+        Long count0 = runner.query(conn, sql, new ScalarHandler<>());
+        Assertions.assertEquals(0, count0);
+        Long count1 = runner.query(conn, sql1, new ScalarHandler<>());
+        Assertions.assertEquals(0, count1);
+        Long count2 = runner.query(conn, sql2, new ScalarHandler<>());
+        Assertions.assertEquals(0, count2);
     }
 }
