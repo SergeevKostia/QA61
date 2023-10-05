@@ -16,4 +16,4 @@
 2. Предоставить документацию для более детального тестирования
 
 # Отчет  
-![Test results - Test Summary 2023-10-04 16-41-10.png](..%2F..%2FTest%20results%20-%20Test%20Summary%202023-10-04%2016-41-10.png)
+![Test results - Test Summary 2023-10-04 16-41-10.png](..%2Fpic%2FTest%20results%20-%20Test%20Summary%202023-10-04%2016-41-10.png)
